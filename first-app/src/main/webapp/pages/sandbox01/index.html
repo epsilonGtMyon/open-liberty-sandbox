@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sandbox01</title>
+  </head>
+  <body>
+    <h1>Sandbox01</h1>
+
+	<div>
+		<div>
+			<label>value01: <input type="text" id="value01" name="value01" />
+			</label>
+		</div>
+		<div>
+			<label>value02: <input type="text" id="value02" name="value02" />
+			</label>
+		</div>
+		<button type="button" id="get1">get1</button>
+	</div>
+	<div>
+		response
+		<textarea id="response"></textarea>
+	</div>
+	ブラウザのコンソールを見る。
+
+	<script type="text/javascript">
+		(function() {
+			const apiRoot = `/first-app/api`
+			const value01Elem = document.getElementById('value01')
+			const value02Elem = document.getElementById('value02')
+			const get1Elem = document.getElementById('get1')
+			const responseElem = document.getElementById('response')
+
+			get1Elem.addEventListener('click', async ()=> {
+				const value01 = value01Elem.value
+				const value02 = value02Elem.value
+				
+				const qs = new URLSearchParams({value01, value02}).toString();
+				const url = `${apiRoot}/sandbox01/get1?${qs}`
+
+				const resp = await fetch(url, {
+					method: 'get',
+					cache: 'no-cache'
+				})
+				const respBodyText = await resp.text()
+				responseElem.value = respBodyText
+			})
+		})()
+	</script>
+  </body>
+</html>

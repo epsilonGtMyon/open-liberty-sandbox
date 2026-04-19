@@ -8,6 +8,10 @@ Open Libertyを試す。
 
 Open Liberty自体はGradleのプラグインで落としてきてデプロイするので、個別で用意しなくてよさそう
 
+## とりあえず動かす
+
+`libertyDev` のGradleタスクを実行し [http://localhost:9080/first-app/](http://localhost:9080/first-app/) にアクセスする。
+
 
 ## Gradle関係
 

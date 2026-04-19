@@ -9,6 +9,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
+import epsilongtmyon.rest.app.common.util.ObjectUtil;
 import epsilongtmyon.rest.app.sandbox01.web.spec.Get1Request;
 import epsilongtmyon.rest.app.sandbox01.web.spec.Get1Response;
 
@@ -26,8 +27,11 @@ public class Sandbox01Resource {
 
 		System.out.println(request);
 
+		final String value01 = ObjectUtil.defaultValue(request.getValue01(), "");
+		final String value02 = ObjectUtil.defaultValue(request.getValue02(), "");
+
 		Get1Response response = new Get1Response();
-		response.setValue1(request.getValue01() + ":" + request.getValue02());
+		response.setValue1(value01 + ":" + value02);
 
 		return Response.ok(response).build();
 	}
