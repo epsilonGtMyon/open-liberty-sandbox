@@ -43,6 +43,28 @@ liberty {
 
 `useOpenLiberty` をfalseにしたらWebSphere Liberty 使えそう
 
+
+#### mainソースセットのresourcesDirの変更
+
+`src/main/resources` ディレクトリにファイルを配置すると `libertyDev` などを実行すると `war`タスクでファイル重複エラーが発生するので
+書き換える
+
+
+```
+ext  {
+    // src/main/resourcesのコピーが重複するので
+    sourceSets.main.output.resourcesDir = sourceSets.main.java.destinationDirectory
+}
+```
+
+この書き方は古い書き方なので必要に応じて変更する。
+
+- [参考1](https://github.com/OpenLiberty/ci.gradle/issues/842#issuecomment-1701592178) 
+- [参考2](https://github.com/OpenLiberty/ci.gradle/issues/301#issuecomment-468616628)
+ 
+これが本当に正しいかは不明.. バージョン上げたら解決したりするのかな..
+ 
+
 ## Libertyの設定関連
 
 `src/main/liberty/config/server.xml` ファイルに記載する。

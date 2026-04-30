@@ -5,6 +5,11 @@ plugins {
 
 version '1.0-SNAPSHOT'
 group 'epsilongtmyon'
+ext  {
+	// https://github.com/OpenLiberty/ci.gradle/issues/842#issuecomment-1701592178
+	// src/main/resourcesのコピーが重複するので
+    sourceSets.main.output.resourcesDir = sourceSets.main.java.destinationDirectory
+}
 
 sourceCompatibility = 21
 targetCompatibility = 21
