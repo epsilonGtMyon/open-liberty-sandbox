@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  <settings>
+   <!-- 列の自動マッピング -->
+   <setting name="mapUnderscoreToCamelCase" value="true"/>
+   <!-- 結果の列がすべてnullでもインスタンスを生成するか (default:false)  -->
+   <setting name="returnInstanceForEmptyRow" value="true"/>
+   <setting name="logImpl" value="SLF4J"/>
+  </settings>
+  <environments default="development">
+    <environment id="development">
+       <!-- コンテナ側のトランザクションに任せる -->
+       <transactionManager type="MANAGED"/>
+       <!-- データソースはJNDIで取得 -->
+       <dataSource type="JNDI">
+           <property name="data_source" value="jdbc/myDB"/>
+       </dataSource>
+    </environment>
+  </environments>
+</configuration>

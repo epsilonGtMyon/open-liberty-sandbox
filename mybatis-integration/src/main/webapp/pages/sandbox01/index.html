@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sandbox01</title>
+  </head>
+  <body>
+    <h1>Sandbox01</h1>
+	<div>
+		<a href="../../">..</a>
+	</div>
+
+	<div>
+		<div>
+			<label>message: <input type="text" id="message" name="message" />
+			</label>
+		</div>
+		<div>
+			<label>throwException: <input type="checkbox" id="throwException" name="throwException" />
+			</label>
+		</div>
+		<button type="button" id="postButton">post</button>
+	</div>
+	<script type="text/javascript">
+		(function() {
+			const apiRoot = `/mybatis-integration/api`
+			
+			const messageElem = document.getElementById('message')
+			const throwExceptionElem = document.getElementById('throwException')
+			const postButtonElem = document.getElementById('postButton')
+			
+			postButtonElem.addEventListener('click', async ()=> {
+				const message = messageElem.value
+				const throwException = throwExceptionElem.checked
+				
+				const url = `${apiRoot}/sandbox01/registerLog`
+
+				const resp = await fetch(url, {
+					method: 'post',
+					headers: {
+					  "Content-Type": "application/json",
+					},
+					body: JSON.stringify({ message: message, throwException: throwException }),
+				})
+				const respBodyText = await resp.text()
+				console.log(respBodyText)
+			})
+		})()
+	</script>
+  </body>
+</html>
