@@ -8,9 +8,11 @@ import java.time.LocalDateTime;
 
 import javax.sql.DataSource;
 
-import jakarta.annotation.Resource;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+
+import epsilongtmyon.app.common.db.annotation.MyDB;
 
 // Transactionalと連動させる。
 
@@ -18,7 +20,8 @@ import jakarta.transaction.Transactional;
 @Transactional
 public class Sandbox02Service {
 
-	@Resource(name = "jdbc/myDB")
+	@Inject
+	@MyDB
 	DataSource dataSource;
 
 	public void execute(String ex) {

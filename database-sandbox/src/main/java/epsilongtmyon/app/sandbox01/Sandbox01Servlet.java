@@ -10,18 +10,20 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
-import jakarta.annotation.Resource;
+import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import epsilongtmyon.app.common.db.annotation.MyDB;
+
 @WebServlet(urlPatterns = { "/sandbox01" })
 public class Sandbox01Servlet extends  HttpServlet {
 
-
-	@Resource(name = "jdbc/myDB")
+	@Inject
+	@MyDB
 	DataSource dataSource;
 
 	@Override
