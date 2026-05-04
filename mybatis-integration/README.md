@@ -20,3 +20,13 @@
     // Source: https://mvnrepository.com/artifact/ch.qos.logback/logback-classic
     implementation 'ch.qos.logback:logback-classic:1.5.32'
 ```
+
+## 設定関係
+
+`beans.xml`に以下を追記してMyBatisのインターセプターをCDIに管理させる
+
+``` xml
+<interceptors>
+    <class>org.mybatis.cdi.JtaTransactionInterceptor</class>
+</interceptors>
+```

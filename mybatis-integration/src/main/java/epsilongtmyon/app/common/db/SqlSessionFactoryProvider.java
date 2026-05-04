@@ -8,6 +8,7 @@ import java.util.Collection;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.inject.Produces;
+import jakarta.inject.Inject;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.Configuration;
@@ -15,7 +16,6 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.mybatis.cdi.SessionFactoryProvider;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import epsilongtmyon.app.common.db.mapper.AppLogMapper;
 import epsilongtmyon.app.common.db.plugin.CommonFieldInterceptor;
@@ -24,7 +24,8 @@ import epsilongtmyon.app.common.db.plugin.LoggingInterceptor;
 @Dependent // ←ないと動かん..
 public class SqlSessionFactoryProvider {
 
-	private static Logger logger = LoggerFactory.getLogger(SqlSessionFactoryProvider.class);
+	@Inject
+	Logger logger;
 
 	@Produces
 	@ApplicationScoped
