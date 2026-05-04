@@ -2,6 +2,8 @@ package epsilongtmyon.app.common.db.plugin;
 
 import java.sql.Timestamp;
 
+import jakarta.enterprise.context.ApplicationScoped;
+
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.SqlCommandType;
@@ -12,6 +14,7 @@ import org.apache.ibatis.plugin.Signature;
 
 import epsilongtmyon.app.common.db.entity.AbstractEntity;
 
+@ApplicationScoped
 @Intercepts({
 		@Signature(type = Executor.class, method = "update", args = { MappedStatement.class, Object.class }),
 })

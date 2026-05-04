@@ -31,13 +31,16 @@ public class SqlSessionFactoryProvider {
 	@Produces
 	@ApplicationScoped
 	@SessionFactoryProvider
-	public SqlSessionFactory produceFactory() {
+	public SqlSessionFactory produceFactory(
+			LoggingInterceptor loggingInterceptor,
+			CommonFieldInterceptor commonFieldInterceptor
+			) {
 		try (InputStream is = Resources.getResourceAsStream("mybatis-config.xml")) {
 			SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
 
 			Configuration configuration = sqlSessionFactory.getConfiguration();
-			configuration.addInterceptor(new LoggingInterceptor());
-			configuration.addInterceptor(new CommonFieldInterceptor());
+			configuration.addInterceptor(loggingInterceptor);
+			configuration.addInterceptor(commonFieldInterceptor);
 			
 			// Mapperは自動では認識されないのでxmlやコードで追加する必要がある。
 			configuration.addMapper(AppLogMapper.class);
@@ -51,4 +54,5 @@ public class SqlSessionFactoryProvider {
 			throw new UncheckedIOException(e);
 		}
 	}
+	
 }

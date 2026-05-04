@@ -2,21 +2,26 @@ package epsilongtmyon.app.common.db.plugin;
 import java.sql.Statement;
 import java.util.Arrays;
 
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+
 import org.apache.ibatis.executor.statement.StatementHandler;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.plugin.Intercepts;
 import org.apache.ibatis.plugin.Invocation;
 import org.apache.ibatis.plugin.Signature;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+@ApplicationScoped
 @Intercepts({
 	@Signature(type = StatementHandler.class, method = "update", args = { Statement.class })
 	
 })
 public class LoggingInterceptor implements Interceptor {
 
-	private static Logger logger = LoggerFactory.getLogger(LoggingInterceptor.class);
+	@Inject
+	Logger logger;
+
 
 	@Override
 	public Object intercept(Invocation invocation) throws Throwable {
