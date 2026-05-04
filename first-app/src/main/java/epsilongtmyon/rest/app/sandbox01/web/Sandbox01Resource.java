@@ -1,6 +1,10 @@
 package epsilongtmyon.rest.app.sandbox01.web;
 
+import java.util.Objects;
+import java.util.logging.Logger;
+
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import jakarta.ws.rs.BeanParam;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
@@ -17,6 +21,9 @@ import epsilongtmyon.rest.app.sandbox01.web.spec.Get1Response;
 @ApplicationScoped
 public class Sandbox01Resource {
 
+	@Inject
+	private Logger logger;
+
 	@GET
 	@Path("get1")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -25,7 +32,7 @@ public class Sandbox01Resource {
 			// まとめて一つのオブジェクトにしたいときは@BeanParam
 			@BeanParam Get1Request request) {
 
-		System.out.println(request);
+		logger.info(Objects.toString(request));
 
 		final String value01 = ObjectUtil.defaultValue(request.getValue01(), "");
 		final String value02 = ObjectUtil.defaultValue(request.getValue02(), "");
