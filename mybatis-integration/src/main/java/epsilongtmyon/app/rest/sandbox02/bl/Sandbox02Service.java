@@ -4,7 +4,8 @@ import java.util.List;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
+
+import org.mybatis.cdi.Transactional;
 
 import epsilongtmyon.app.common.db.entity.AppLog;
 import epsilongtmyon.app.common.db.mapper.AppLogMapper;

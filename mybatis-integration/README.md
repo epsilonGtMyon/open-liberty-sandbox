@@ -30,3 +30,7 @@
     <class>org.mybatis.cdi.JtaTransactionInterceptor</class>
 </interceptors>
 ```
+
+## トランザクション
+
+MyBatis-CDI側の `@Transactional` アノテーションを使う

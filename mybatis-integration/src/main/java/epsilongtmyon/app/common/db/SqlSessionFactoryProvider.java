@@ -18,6 +18,7 @@ import org.mybatis.cdi.SessionFactoryProvider;
 import org.slf4j.Logger;
 
 import epsilongtmyon.app.common.db.mapper.AppLogMapper;
+import epsilongtmyon.app.common.db.mapper.AppLogMapper2;
 import epsilongtmyon.app.common.db.plugin.CommonFieldInterceptor;
 import epsilongtmyon.app.common.db.plugin.LoggingInterceptor;
 
@@ -40,6 +41,7 @@ public class SqlSessionFactoryProvider {
 			
 			// Mapperは自動では認識されないのでxmlやコードで追加する必要がある。
 			configuration.addMapper(AppLogMapper.class);
+			configuration.addMapper(AppLogMapper2.class);
 
 			Collection<Class<?>> mappers = configuration.getMapperRegistry().getMappers();
 			logger.info("mappers = {}", mappers);
